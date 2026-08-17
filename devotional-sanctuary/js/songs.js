@@ -8,7 +8,7 @@ const VAISHNAVA_SONGS = [
     title: 'Radha Krishna Pran Mora',
     author: 'Srila Narottama Dasa Thakura',
     singer: 'HH Bhakti Ashraya Vaisnava Swami Maharaj',
-    audioFile: 'audio/Radha Krishna Pran Mora Vaishnav Bhajan HH Bhakti Ashraya Vaisnava Swami Maharaj - ISKCON BIKANER OFFICIAL (128k).mp3',
+    audioFile: 'audio/radha_krishna_pran_mora.mp3',
     rag: 'Prarthana / Intimate Bhakti',
     verses: [
       {
@@ -42,7 +42,7 @@ const VAISHNAVA_SONGS = [
     title: 'Sri Caurastakam (The Thief of Hearts)',
     author: 'Sri Bilvamangala Thakura',
     singer: 'HH Bhakti Ashraya Vaisnava Swami Maharaj',
-    audioFile: 'audio/Caurastakam Vaisnava Bhajan Bhakti Ashraya Vaisnava Swami - Bhakti Ashraya Vaisnava Swami (128k).mp3',
+    audioFile: null,
     rag: 'Vraja Bhakti / Deep Prayer',
     verses: [
       {
