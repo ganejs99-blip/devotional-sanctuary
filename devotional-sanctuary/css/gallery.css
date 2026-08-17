@@ -1,0 +1,413 @@
+/* ==========================================================================
+   ENHANCED GALLERIES, LIGHTBOX, SCHEDULE & AUDIO PLAYER STYLING
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. DARSHAN GALLERIES & FILTER TABS
+   -------------------------------------------------------------------------- */
+
+.gallery-filters-bar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.gallery-filter-btn {
+  padding: 8px 18px;
+  background: #FFFBF0;
+  border: 1.5px solid rgba(212, 175, 55, 0.4);
+  border-radius: var(--radius-full);
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--crimson-divine);
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.gallery-filter-btn:hover, .gallery-filter-btn.active {
+  background: linear-gradient(135deg, var(--gold-primary), var(--saffron-primary));
+  color: #FFFFFF;
+  border-color: transparent;
+  box-shadow: var(--shadow-gold-sm);
+  transform: translateY(-2px);
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 22px;
+  margin-top: 10px;
+}
+
+.darshan-card {
+  background: #FFFFFF;
+  border: 2px solid var(--gold-primary);
+  border-radius: var(--radius-md);
+  padding: 12px;
+  box-shadow: 0 10px 25px rgba(90, 40, 10, 0.1);
+  transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.darshan-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 16px 36px rgba(212, 175, 55, 0.45);
+  border-color: var(--saffron-primary);
+}
+
+.darshan-img-frame {
+  width: 100%;
+  height: 250px;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  position: relative;
+  background: #FBF4E4;
+  border: 1px solid rgba(212, 175, 55, 0.25);
+}
+
+.darshan-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.darshan-card:hover .darshan-img {
+  transform: scale(1.1);
+}
+
+.darshan-tag-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(139, 30, 47, 0.85);
+  backdrop-filter: blur(4px);
+  color: #FFF;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--gold-bright);
+}
+
+.darshan-info {
+  margin-top: 12px;
+  text-align: center;
+}
+
+.darshan-caption {
+  font-family: var(--font-royal);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--crimson-divine);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.darshan-sub {
+  font-size: 0.8rem;
+  color: var(--gold-dark);
+  margin-top: 4px;
+}
+
+/* --------------------------------------------------------------------------
+   2. HD LIGHTBOX MODAL WITH NEXT/PREV & ZOOM
+   -------------------------------------------------------------------------- */
+
+.lightbox-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 6, 4, 0.94);
+  backdrop-filter: blur(12px);
+  z-index: 500;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.lightbox-modal.active {
+  display: flex;
+}
+
+.lightbox-content {
+  position: relative;
+  max-width: 900px;
+  width: 100%;
+  text-align: center;
+  animation: fadeInSlideUp 0.3s ease;
+}
+
+.lightbox-img-wrapper {
+  position: relative;
+  display: inline-block;
+  max-width: 100%;
+}
+
+.lightbox-img {
+  max-width: 100%;
+  max-height: 75vh;
+  border-radius: var(--radius-md);
+  border: 3px solid var(--gold-bright);
+  box-shadow: 0 0 50px rgba(212, 175, 55, 0.6);
+  object-fit: contain;
+  background: #000;
+}
+
+.lightbox-caption {
+  color: #FFFDF7;
+  font-family: var(--font-royal);
+  font-size: 1.25rem;
+  margin-top: 14px;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+}
+
+.lightbox-counter {
+  color: var(--gold-bright);
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-top: 4px;
+}
+
+.lightbox-btn-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(6px);
+  border: 1.5px solid var(--gold-bright);
+  color: #FFF;
+  font-size: 1.4rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  z-index: 10;
+}
+
+.lightbox-btn-nav:hover {
+  background: var(--gold-primary);
+  color: #FFF;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.lightbox-prev {
+  left: -20px;
+}
+
+.lightbox-next {
+  right: -20px;
+}
+
+@media (max-width: 768px) {
+  .lightbox-prev { left: 10px; }
+  .lightbox-next { right: 10px; }
+}
+
+.lightbox-close {
+  position: absolute;
+  top: -45px;
+  right: 0;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid var(--gold-bright);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  color: #FFF;
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.lightbox-close:hover {
+  background: var(--crimson-divine);
+}
+
+/* --------------------------------------------------------------------------
+   3. UNIVERSAL DEVOTIONAL AUDIO PLAYER (Sticky Bar)
+   -------------------------------------------------------------------------- */
+
+.universal-player-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 150;
+  background: rgba(38, 27, 20, 0.95);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-top: 2px solid var(--gold-primary);
+  padding: 10px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.35);
+  color: #FFFDF7;
+}
+
+.player-left-info {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 200px;
+  max-width: 300px;
+}
+
+.player-disc-visual {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--gold-bright) 25%, var(--saffron-primary) 65%, #5A0E1A 100%);
+  border: 2px solid var(--gold-bright);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  box-shadow: 0 0 12px rgba(212, 175, 55, 0.5);
+  flex-shrink: 0;
+}
+
+.player-disc-visual.spinning {
+  animation: spinMandala 8s linear infinite;
+}
+
+.player-track-details {
+  overflow: hidden;
+}
+
+.player-track-title {
+  font-family: var(--font-royal);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--gold-bright);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.player-track-singer {
+  font-size: 0.75rem;
+  color: #D6C2AA;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Center Controls */
+.player-center-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+  max-width: 550px;
+}
+
+.player-button-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.player-nav-btn {
+  background: none;
+  border: none;
+  color: #E2D3BE;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.player-nav-btn:hover {
+  color: var(--gold-bright);
+}
+
+.audio-toggle-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--gold-primary), var(--saffron-primary));
+  border: none;
+  color: #FFFFFF;
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-gold-sm);
+  transition: transform 0.2s;
+}
+
+.audio-toggle-btn:hover {
+  transform: scale(1.08);
+}
+
+.player-progress-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.audio-progress-bar {
+  flex: 1;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.audio-progress-fill {
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(90deg, var(--saffron-primary), var(--gold-bright));
+  border-radius: var(--radius-full);
+}
+
+.audio-time-label {
+  font-size: 0.75rem;
+  color: #B59B7D;
+  font-variant-numeric: tabular-nums;
+  min-width: 75px;
+}
+
+@keyframes spinMandala {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@media (max-width: 640px) {
+  .universal-player-bar {
+    padding: 8px 14px;
+    gap: 10px;
+  }
+  .player-left-info {
+    min-width: 120px;
+    max-width: 150px;
+  }
+  .player-track-singer {
+    display: none;
+  }
+  .audio-time-label {
+    display: none;
+  }
+}

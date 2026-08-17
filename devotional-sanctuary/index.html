@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hare Krishna | Devotional Sanctuary & Sadhana Portal</title>
+  <meta name="description" content="A divine, interactive devotional sanctuary for daily bhakti tracking, 108 Japa mala chanting, Radha Govind & Radha Madhav darshan galleries, Vaishnava songs by HH Bhakti Ashraya Vaisnava Swami Maharaj, and encrypted devotee prayers.">
+  
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/portal.css">
+  <link rel="stylesheet" href="css/sadhana.css">
+  <link rel="stylesheet" href="css/gallery.css">
+</head>
+<body style="padding-bottom: 90px;">
+
+  <!-- Floating Lotus Petals & Sparkle Canvas -->
+  <canvas id="particlesCanvas"></canvas>
+
+  <!-- Top Sacred Floating Navigation Bar -->
+  <header class="top-sacred-bar">
+    <div class="brand-badge" onclick="app.returnToPortal()">
+      <div class="brand-icon">🦚</div>
+      <div class="brand-text">
+        <span class="brand-title">Hare Krishna</span>
+        <span class="brand-subtitle">Devotional Sanctuary</span>
+      </div>
+    </div>
+
+    <div class="nav-actions">
+      <button class="pill-btn pill-btn-outline" onclick="app.openGuideModal()">
+        <span>📜</span> <span class="btn-label">Mantra Guide</span>
+      </button>
+      <button class="pill-btn pill-btn-gold" onclick="app.processMantraInput('hare krishna')">
+        <span>📿</span> <span class="btn-label">Daily Bhakti</span>
+      </button>
+      <button class="sound-toggle-btn" id="globalSoundBtn" onclick="app.toggleAudio()" title="Sound On / Off">
+        🔔
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Viewport Container -->
+  <main class="app-container">
+
+    <!-- ====================================================================
+         SECTION 1: SACRED ENTRANCE & SECRET MANTRA PORTAL (Default)
+         ==================================================================== -->
+    <section class="sanctum-section active" id="portalSection">
+      <div class="portal-wrapper">
+        
+        <div class="portal-greeting">
+          <div class="portal-badge">
+            <span>✨</span> ॐ नमो भगवते वासुदेवाय <span>✨</span>
+          </div>
+          <div class="diya-badge">🪔</div>
+          <h1 class="portal-main-heading">Are Bhai Bolo Yrr!</h1>
+          <p class="portal-subtext">"Hare Krishna" bolo aur pavan dwaar kholo...</p>
+        </div>
+
+        <!-- 3D Sacred Envelope & Wax Seal -->
+        <div class="sacred-envelope-container">
+          <div class="sacred-envelope" id="sacredEnvelope" onclick="app.processMantraInput('hare krishna')">
+            <div class="envelope-flap-top"></div>
+            <div class="envelope-flap-left"></div>
+            <div class="envelope-flap-right"></div>
+            <div class="envelope-flap-bottom"></div>
+            
+            <div class="sacred-wax-seal" title="Click to Chant & Open">
+              <span class="wax-seal-icon">🦚</span>
+              <span class="wax-seal-text">OPEN</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sacred Mantra Console -->
+        <div class="mantra-console-box">
+          <label class="mantra-input-label" for="mantraInputField">
+            Type your Sacred Mantra or Keyword:
+          </label>
+          <div class="input-field-group">
+            <input 
+              type="text" 
+              id="mantraInputField" 
+              class="mantra-input-field" 
+              placeholder="e.g. hare krishna, RadhaGovind, myfav..." 
+              autocomplete="off"
+            >
+            <button class="submit-mantra-btn" onclick="app.processMantraInput()" title="Enter Sanctum">
+              ➔
+            </button>
+          </div>
+
+          <div class="quick-chant-title">✨ Quick Sacred Keys:</div>
+          <div class="quick-chant-grid">
+            <button class="quick-chant-chip" onclick="app.processMantraInput('hare krishna')">📿 Hare Krishna</button>
+            <button class="quick-chant-chip" onclick="app.processMantraInput('RadhaGovind')">🕰️ RadhaGovind (Schedule)</button>
+            <button class="quick-chant-chip" onclick="app.processMantraInput('Radha & Govind')">🦚 Radha & Govind</button>
+            <button class="quick-chant-chip" onclick="app.processMantraInput('Radha Madhav')">🌸 Radha Madhav</button>
+            <button class="quick-chant-chip" onclick="app.processMantraInput('vaishnav song')">🎶 Vaishnav Song</button>
+            <button class="quick-chant-chip" onclick="app.processMantraInput('myfav')">💌 myfav (Send Note)</button>
+            <button class="quick-chant-chip" onclick="app.processMantraInput('myheart')">🔐 myheart (Inbox)</button>
+          </div>
+
+          <a class="guide-trigger" onclick="app.openGuideModal()">
+            View All Secret Keywords & Guides 📜
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         SECTION 2: DAILY BHAKTI & SADHANA TRACKER ('hare krishna')
+         ==================================================================== -->
+    <section class="sanctum-section" id="sadhanaSection">
+      
+      <div class="section-header-motif">
+        <div class="diya-badge">📿</div>
+        <h2 class="section-title">Daily Bhakti & Sadhana Tracker</h2>
+        <p class="section-subtitle">Track your spiritual practices, Japa meditation, and learning</p>
+        <div class="ornament-line">
+          <span class="ornament-flower">🪷</span>
+        </div>
+      </div>
+
+      <div class="sadhana-dashboard-grid">
+        
+        <!-- Left Column: Japa Mala Bead Counter -->
+        <div class="divine-card japa-mala-widget">
+          <h3 style="font-family: var(--font-royal); color: var(--crimson-divine); font-size: 1.3rem;">
+            Tulsi Japa Mala Counter
+          </h3>
+          <p style="font-size: 0.85rem; color: var(--gold-dark); margin-top: 2px;">
+            108 Holy Names of Sri Sri Radha & Krishna
+          </p>
+
+          <div class="japa-circle-visual">
+            <svg class="japa-svg-ring" viewBox="0 0 200 200">
+              <defs>
+                <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#FF7722" />
+                  <stop offset="50%" stop-color="#D4AF37" />
+                  <stop offset="100%" stop-color="#8B1E2F" />
+                </linearGradient>
+              </defs>
+              <circle class="japa-ring-bg" cx="100" cy="100" r="90" />
+              <circle class="japa-ring-progress" id="japaProgressRing" cx="100" cy="100" r="90" />
+            </svg>
+
+            <div class="japa-center-info">
+              <span class="japa-bead-count" id="japaBeadCount">0</span>
+              <span class="japa-bead-label">Bead / 108</span>
+              <span class="japa-round-pill" id="japaRoundCount">0 Completed</span>
+            </div>
+          </div>
+
+          <div class="japa-actions">
+            <button class="japa-btn-chant" onclick="sadhana.chantBead()">
+              <span>📿</span> Chant Next Bead
+            </button>
+            <button class="japa-btn-reset" onclick="sadhana.resetJapa()" title="Reset Counter">
+              ↺
+            </button>
+          </div>
+
+          <div class="maha-mantra-strip">
+            हरे कृष्ण हरे कृष्ण कृष्ण कृष्ण हरे हरे ।<br>
+            हरे राम हरे राम राम राम हरे हरे ॥
+          </div>
+        </div>
+
+        <!-- Right Column: Daily Sadhana Log Form -->
+        <div class="divine-card sadhana-form-card">
+          <div class="form-header-row">
+            <h3 style="font-family: var(--font-royal); color: var(--crimson-divine); font-size: 1.25rem;">
+              Record Today's Seva & Bhakti
+            </h3>
+            <span class="form-date-badge" id="currentSadhanaDate">📅 Today</span>
+          </div>
+
+          <form onsubmit="sadhana.saveLog(event)">
+            <div class="form-two-col">
+              <div class="sadhana-input-group">
+                <label class="sadhana-input-label">📿 Japa Rounds Chanted:</label>
+                <input type="number" id="formRoundsInput" class="sadhana-input" min="0" max="108" value="16" required>
+              </div>
+              <div class="sadhana-input-group">
+                <label class="sadhana-input-label">🎧 Katha / Lecture Heard:</label>
+                <input type="text" id="formKathaInput" class="sadhana-input" placeholder="e.g. SP Lecture on BG 9.26" required>
+              </div>
+            </div>
+
+            <div class="form-two-col">
+              <div class="sadhana-input-group">
+                <label class="sadhana-input-label">🪔 Seva Performed Today:</label>
+                <input type="text" id="formSevaInput" class="sadhana-input" placeholder="e.g. Deity worship, Prasad distribution" required>
+              </div>
+              <div class="sadhana-input-group">
+                <label class="sadhana-input-label">📖 Sloka / Verse Learned:</label>
+                <input type="text" id="formSlokaInput" class="sadhana-input" placeholder="e.g. Bhagavad Gita 9.26" required>
+              </div>
+            </div>
+
+            <div class="sadhana-input-group">
+              <label class="sadhana-input-label">📚 Scripture Reading (Book & Chapters):</label>
+              <input type="text" id="formReadingInput" class="sadhana-input" placeholder="e.g. Srimad Bhagavatam Canto 1 Ch 2">
+            </div>
+
+            <div class="sadhana-input-group">
+              <label class="sadhana-input-label">✨ Devotional Realization / Gratitude:</label>
+              <textarea id="formRealizationInput" class="sadhana-textarea" placeholder="Write any prayer, realization, or gratitude note for the day..."></textarea>
+            </div>
+
+            <button type="submit" class="btn-save-sadhana">
+              💾 Save Sadhana Entry
+            </button>
+          </form>
+        </div>
+
+      </div>
+
+      <!-- Sloka of the Day Widget -->
+      <div class="divine-card sloka-of-the-day-card">
+        <div class="sloka-header">
+          <span class="sloka-tag" id="slokaTag">📖 Bhagavad Gita 9.26</span>
+          <button class="btn-next-sloka" onclick="sadhana.nextSloka()">Next Sloka ➔</button>
+        </div>
+        <div class="sloka-sanskrit" id="slokaSanskrit">
+          पत्रं पुष्पं फलं तोयं यो मे भक्त्या प्रयच्छति।<br>
+          तदहं भक्त्युपहृतमश्नामि प्रयतात्मनः॥
+        </div>
+        <div class="sloka-translation" id="slokaTranslation">
+          "If one offers Me with love and devotion a leaf, a flower, a fruit or water, I will accept it."
+        </div>
+      </div>
+
+      <!-- Sadhana History & Excel/Doc Exporter Section -->
+      <div class="divine-card sadhana-history-card">
+        <div class="history-header">
+          <div>
+            <h3 style="font-family: var(--font-royal); color: var(--crimson-divine); font-size: 1.25rem;">
+              📜 Sadhana Journey History
+            </h3>
+            <p style="font-size: 0.82rem; color: #7C6856;">Saved securely on your device</p>
+          </div>
+          <div class="export-btn-group">
+            <button class="btn-export-excel" onclick="exporter.exportToExcel()" title="Download Excel Spreadsheet">
+              📊 Export to Excel (.csv)
+            </button>
+            <button class="btn-export-doc" onclick="exporter.exportToDoc()" title="Download Word Document">
+              📄 Export to Word (.doc)
+            </button>
+          </div>
+        </div>
+
+        <div class="history-table-wrapper">
+          <table class="history-table">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Rounds</th>
+                <th>Katha Heard</th>
+                <th>Seva Done</th>
+                <th>Sloka Learned</th>
+                <th>Reading</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="sadhanaTableBody">
+              <!-- Rendered via JavaScript -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ====================================================================
+         SECTION 3: DAILY VAISHNAVA SCHEDULE ('RadhaGovind')
+         ==================================================================== -->
+    <section class="sanctum-section" id="scheduleSection">
+      <div class="section-header-motif">
+        <div class="diya-badge">🕰️</div>
+        <h2 class="section-title">Daily Vaishnava Schedule</h2>
+        <p class="section-subtitle">Auspicious daily routine for spiritual upliftment</p>
+        <div class="ornament-line">
+          <span class="ornament-flower">🪷</span>
+        </div>
+      </div>
+
+      <div class="schedule-timeline">
+        
+        <div class="timeline-item" data-start="4.5" data-end="5.25">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <span class="timeline-time-badge">🌅 4:30 AM - 5:15 AM</span>
+            <h4 class="timeline-title">Mangala Aarti & Tulsi Puja</h4>
+            <p class="timeline-desc">Auspicious morning ceremony, offering prayers to Sri Sri Radha & Krishna and Tulsi Devi.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item" data-start="5.25" data-end="7.25">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <span class="timeline-time-badge">📿 5:15 AM - 7:15 AM</span>
+            <h4 class="timeline-title">Japa Meditation (Maha-Mantra)</h4>
+            <p class="timeline-desc">Deep absorption in chanting 16 rounds of the Hare Krishna Maha-Mantra during Brahma Muhurta.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item" data-start="7.25" data-end="7.5">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <span class="timeline-time-badge">🦚 7:15 AM - 7:30 AM</span>
+            <h4 class="timeline-title">Darshan Aarti & Guru Puja</h4>
+            <p class="timeline-desc">First divine darshan of the Deities with Govindam prayers and offering obeisances to Srila Prabhupada.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item" data-start="7.5" data-end="8.5">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <span class="timeline-time-badge">📖 7:30 AM - 8:30 AM</span>
+            <h4 class="timeline-title">Srimad Bhagavatam Discourse</h4>
+            <p class="timeline-desc">Hearing nectarine discourses, learning Sanskrit slokas and philosophical purports.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item" data-start="8.5" data-end="18.5">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <span class="timeline-time-badge">🛠️ 8:30 AM - 6:30 PM</span>
+            <h4 class="timeline-title">Prescribed Duty & Seva</h4>
+            <p class="timeline-desc">Performing daily responsibilities, studies, work, and seva with devotion offered unto Krishna.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item" data-start="18.5" data-end="20.0">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <span class="timeline-time-badge">🪔 6:30 PM - 8:00 PM</span>
+            <h4 class="timeline-title">Sandhya Gaura Aarti & Kirtan</h4>
+            <p class="timeline-desc">Evening blissful kirtan, Bhagavad Gita reading, and offering deep gratitude.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item" data-start="20.0" data-end="22.0">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <span class="timeline-time-badge">🌙 8:00 PM - 10:00 PM</span>
+            <h4 class="timeline-title">Spiritual Reading & Night Rest</h4>
+            <p class="timeline-desc">Reflective reading of Vaishnava literatures, remembering Krishna before peaceful rest.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         SECTION 4: SRI SRI RADHA GOVIND DARSHAN ('Radha & Govind')
+         ==================================================================== -->
+    <section class="sanctum-section" id="radhaGovindGallerySection">
+      <div class="section-header-motif">
+        <div class="diya-badge">🦚</div>
+        <h2 class="section-title">Sri Sri Radha Govind Ji Darshan</h2>
+        <p class="section-subtitle">Divine pastimes and auspicious darshan photos</p>
+        <div class="ornament-line">
+          <span class="ornament-flower">🪷</span>
+        </div>
+      </div>
+
+      <!-- Filter Buttons -->
+      <div class="gallery-filters-bar">
+        <button class="gallery-filter-btn active" onclick="document.querySelectorAll('.gallery-filter-btn').forEach(b=>b.classList.remove('active')); this.classList.add('active'); gallery.renderRadhaGovind('All')">All Photos (30+)</button>
+        <button class="gallery-filter-btn" onclick="document.querySelectorAll('.gallery-filter-btn').forEach(b=>b.classList.remove('active')); this.classList.add('active'); gallery.renderRadhaGovind('Sringar')">Sringar</button>
+        <button class="gallery-filter-btn" onclick="document.querySelectorAll('.gallery-filter-btn').forEach(b=>b.classList.remove('active')); this.classList.add('active'); gallery.renderRadhaGovind('Floral')">Pushpa Seva</button>
+        <button class="gallery-filter-btn" onclick="document.querySelectorAll('.gallery-filter-btn').forEach(b=>b.classList.remove('active')); this.classList.add('active'); gallery.renderRadhaGovind('Aarti')">Aarti & Deepam</button>
+        <button class="gallery-filter-btn" onclick="document.querySelectorAll('.gallery-filter-btn').forEach(b=>b.classList.remove('active')); this.classList.add('active'); gallery.renderRadhaGovind('Alankara')">Alankara & Mukut</button>
+      </div>
+
+      <!-- Dynamic Gallery Grid -->
+      <div class="gallery-grid" id="radhaGovindGrid">
+        <!-- Rendered via JS -->
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         SECTION 5: SRI SRI RADHA MADHAV DARSHAN ('Radha Madhav')
+         ==================================================================== -->
+    <section class="sanctum-section" id="radhaMadhavGallerySection">
+      <div class="section-header-motif">
+        <div class="diya-badge">🌸</div>
+        <h2 class="section-title">Sri Sri Radha Madhav Darshan</h2>
+        <p class="section-subtitle">Mayapur Dham & Vrindavan Transcendental Forms</p>
+        <div class="ornament-line">
+          <span class="ornament-flower">🪷</span>
+        </div>
+      </div>
+
+      <!-- Filter Buttons -->
+      <div class="gallery-filters-bar">
+        <button class="gallery-filter-btn active" onclick="document.querySelectorAll('.gallery-filter-btn').forEach(b=>b.classList.remove('active')); this.classList.add('active'); gallery.renderRadhaMadhav('All')">All Photos</button>
+        <button class="gallery-filter-btn" onclick="document.querySelectorAll('.gallery-filter-btn').forEach(b=>b.classList.remove('active')); this.classList.add('active'); gallery.renderRadhaMadhav('Mayapur Full')">Mayapur Chandrodaya</button>
+        <button class="gallery-filter-btn" onclick="document.querySelectorAll('.gallery-filter-btn').forEach(b=>b.classList.remove('active')); this.classList.add('active'); gallery.renderRadhaMadhav('Sringar')">Divine Sringar</button>
+        <button class="gallery-filter-btn" onclick="document.querySelectorAll('.gallery-filter-btn').forEach(b=>b.classList.remove('active')); this.classList.add('active'); gallery.renderRadhaMadhav('Floral')">Pushpa Abhishek</button>
+        <button class="gallery-filter-btn" onclick="document.querySelectorAll('.gallery-filter-btn').forEach(b=>b.classList.remove('active')); this.classList.add('active'); gallery.renderRadhaMadhav('Panorama')">Altar Panorama</button>
+      </div>
+
+      <!-- Dynamic Gallery Grid -->
+      <div class="gallery-grid" id="radhaMadhavGrid">
+        <!-- Rendered via JS -->
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         SECTION 6: VAISHNAVA SONGBOOK & PRAYERS ('vaishnav song')
+         ==================================================================== -->
+    <section class="sanctum-section" id="songbookSection">
+      <div class="section-header-motif">
+        <div class="diya-badge">🎶</div>
+        <h2 class="section-title">Vaishnava Songs & Prayers</h2>
+        <p class="section-subtitle">Sung by HH Bhakti Ashraya Vaisnava Swami Maharaj & Acharyas</p>
+        <div class="ornament-line">
+          <span class="ornament-flower">🪷</span>
+        </div>
+      </div>
+
+      <div class="songbook-container">
+        
+        <!-- Left: Songs Navigation List -->
+        <div class="songs-list" id="songsListContainer">
+          <!-- Rendered via JavaScript -->
+        </div>
+
+        <!-- Right: Active Song Viewer -->
+        <div class="song-lyrics-viewer">
+          <div class="song-active-header">
+            <h3 class="song-active-title" id="activeSongTitle">Radha Krishna Pran Mora</h3>
+            <p class="song-active-author" id="activeSongAuthor">Srila Narottama Dasa Thakura</p>
+          </div>
+
+          <div id="activeSongLyrics">
+            <!-- Verses rendered via JS -->
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         SECTION 7: DEVOTEE MESSAGE SUBMISSION ('myfav')
+         ==================================================================== -->
+    <section class="sanctum-section" id="myFavMessengerSection">
+      <div class="section-header-motif">
+        <div class="diya-badge">💌</div>
+        <h2 class="section-title">Leave a Heartfelt Message / Prayer</h2>
+        <p class="section-subtitle">Send a private devotional note or blessing</p>
+        <div class="ornament-line">
+          <span class="ornament-flower">🪷</span>
+        </div>
+      </div>
+
+      <div class="messenger-wrapper">
+        <div class="message-form-card">
+          <p style="color: var(--saffron-deep); font-size: 0.95rem; line-height: 1.5; margin-bottom: 20px; text-align: center;">
+            Write a special message, prayer, or realization. It will be safely encrypted and sent to the private devotee vault! 🙏
+          </p>
+
+          <form onsubmit="messenger.submitDevoteeMessage(event)">
+            <div class="sadhana-input-group">
+              <label class="sadhana-input-label">🪷 Your Good Name / Spiritual Name:</label>
+              <input type="text" id="devoteeSenderName" class="sadhana-input" placeholder="e.g. Radhika / Gaurav / Sibling" required>
+            </div>
+
+            <div class="sadhana-input-group">
+              <label class="sadhana-input-label">✍️ Your Heartfelt Message / Blessing:</label>
+              <textarea id="devoteeMessageText" class="sadhana-textarea" style="min-height: 120px;" placeholder="Write your words with love and affection..." required></textarea>
+            </div>
+
+            <button type="submit" class="btn-save-sadhana" style="background: linear-gradient(135deg, var(--saffron-primary), var(--crimson-divine));">
+              💌 Send Devotional Message
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         SECTION 8: PRIVATE DEVOTIONAL INBOX ('myheart')
+         ==================================================================== -->
+    <section class="sanctum-section" id="myHeartInboxSection">
+      <div class="section-header-motif">
+        <div class="diya-badge">🔐</div>
+        <h2 class="section-title">Private Devotional Inbox</h2>
+        <p class="section-subtitle">Protected repository of all received devotee messages</p>
+        <div class="ornament-line">
+          <span class="ornament-flower">🪷</span>
+        </div>
+      </div>
+
+      <!-- Password PIN Gate -->
+      <div class="pin-gate-box" id="inboxPinGate">
+        <span style="font-size: 2.5rem;">🔑</span>
+        <h3 style="font-family: var(--font-royal); color: var(--crimson-divine); margin: 10px 0;">Enter Secret Key</h3>
+        <p style="font-size: 0.85rem; color: #7C6856; margin-bottom: 16px;">
+          Unlock to view all private heartfelt messages.
+        </p>
+        <input type="password" id="inboxPinInput" class="sadhana-input" placeholder="Enter key (e.g. 108)" style="text-align: center; margin-bottom: 12px;">
+        <button class="pill-btn pill-btn-gold" style="width: 100%; justify-content: center;" onclick="messenger.unlockInbox()">
+          Unlock My Heart Inbox 🔓
+        </button>
+        <p style="font-size: 0.75rem; color: var(--gold-dark); margin-top: 8px;">Master Default Key: <code>108</code></p>
+      </div>
+
+      <!-- Content Area (Shown when unlocked) -->
+      <div id="inboxContentArea" style="display: none;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+          <h3 style="font-family: var(--font-royal); color: var(--crimson-divine);">
+            💌 Received Notes & Prayers
+          </h3>
+          <span class="form-date-badge" id="inboxMsgCount">0 Messages</span>
+        </div>
+
+        <div class="inbox-grid" id="inboxMessagesGrid">
+          <!-- Rendered via JS -->
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ====================================================================
+       UNIVERSAL CONTINUOUS DEVOTIONAL AUDIO PLAYER (Sticky Bar)
+       ==================================================================== -->
+  <div class="universal-player-bar">
+    <div class="player-left-info">
+      <div class="player-disc-visual" id="playerDiscVisual" onclick="songbook.togglePlay()">
+        🦚
+      </div>
+      <div class="player-track-details">
+        <div class="player-track-title" id="bottomPlayerTitle">Radha Krishna Pran Mora</div>
+        <div class="player-track-singer" id="bottomPlayerSinger">HH Bhakti Ashraya Vaisnava Swami Maharaj</div>
+      </div>
+    </div>
+
+    <div class="player-center-controls">
+      <div class="player-button-row">
+        <button class="player-nav-btn" onclick="songbook.prevTrack()" title="Previous Bhajan">⏮</button>
+        <button class="audio-toggle-btn" onclick="songbook.togglePlay()" title="Play / Pause">▶</button>
+        <button class="player-nav-btn" onclick="songbook.nextTrack()" title="Next Bhajan">⏭</button>
+      </div>
+
+      <div class="player-progress-container">
+        <div class="audio-progress-bar" onclick="songbook.seek(event, this)">
+          <div class="audio-progress-fill"></div>
+        </div>
+        <span class="audio-time-label" id="audioTimeDisplay">0:00 / 0:00</span>
+      </div>
+    </div>
+
+    <div style="display: flex; align-items: center; gap: 8px;">
+      <span style="font-size: 0.9rem;">🔊</span>
+      <input type="range" min="0" max="1" step="0.05" value="0.8" onchange="songbook.setVolume(this.value)" style="width: 70px; accent-color: var(--gold-bright); cursor:pointer;">
+    </div>
+  </div>
+
+  <!-- ====================================================================
+       GUIDE & KEYWORD DIRECTORY MODAL
+       ==================================================================== -->
+  <div class="guide-modal-overlay" id="guideModalOverlay" onclick="if(event.target === this) app.closeGuideModal()">
+    <div class="guide-modal">
+      <button class="guide-close-btn" onclick="app.closeGuideModal()">✕</button>
+      
+      <div style="text-align: center; margin-bottom: 15px;">
+        <span style="font-size: 2rem;">📜</span>
+        <h3 style="font-family: var(--font-royal); color: var(--crimson-divine); font-size: 1.4rem;">
+          Sacred Keyword Directory
+        </h3>
+        <p style="font-size: 0.85rem; color: var(--gold-dark);">
+          Type any of these mantras into the entrance box to unlock its sanctum:
+        </p>
+      </div>
+
+      <table class="guide-table">
+        <thead>
+          <tr>
+            <th>Mantra / Keyword</th>
+            <th>Sanctum Unlocked</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="guide-key-badge" onclick="app.closeGuideModal(); app.processMantraInput('hare krishna')">hare krishna</span></td>
+            <td>📿 Daily Bhakti & 108 Japa Sadhana Tracker (Excel / Doc export)</td>
+          </tr>
+          <tr>
+            <td><span class="guide-key-badge" onclick="app.closeGuideModal(); app.processMantraInput('RadhaGovind')">RadhaGovind</span></td>
+            <td>🕰️ Daily Vaishnava Routine & Seva Schedule</td>
+          </tr>
+          <tr>
+            <td><span class="guide-key-badge" onclick="app.closeGuideModal(); app.processMantraInput('Radha & Govind')">Radha & Govind</span></td>
+            <td>🦚 Sri Sri Radha Govind Ji Darshan Gallery (30+ Photos)</td>
+          </tr>
+          <tr>
+            <td><span class="guide-key-badge" onclick="app.closeGuideModal(); app.processMantraInput('Radha Madhav')">Radha Madhav</span></td>
+            <td>🌸 Sri Sri Radha Madhav Darshan Gallery (Mayapur Dham)</td>
+          </tr>
+          <tr>
+            <td><span class="guide-key-badge" onclick="app.closeGuideModal(); app.processMantraInput('vaishnav song')">vaishnav song</span></td>
+            <td>🎶 Vaishnava Songs & Player (HH Bhakti Ashraya Vaisnava Swami)</td>
+          </tr>
+          <tr>
+            <td><span class="guide-key-badge" onclick="app.closeGuideModal(); app.processMantraInput('myfav')">myfav</span></td>
+            <td>💌 Leave a Secret Heartfelt Message / Prayer</td>
+          </tr>
+          <tr>
+            <td><span class="guide-key-badge" onclick="app.closeGuideModal(); app.processMantraInput('myheart')">myheart</span></td>
+            <td>🔐 Private Inbox (Enter PIN 108)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- HD Lightbox Modal with Next / Prev Buttons -->
+  <div class="lightbox-modal" id="lightboxModal" onclick="if(event.target === this) app.closeLightbox()">
+    <div class="lightbox-content">
+      <button class="lightbox-close" onclick="app.closeLightbox()">✕</button>
+      
+      <button class="lightbox-btn-nav lightbox-prev" onclick="gallery.prevLightbox()" title="Previous Image">❮</button>
+      <button class="lightbox-btn-nav lightbox-next" onclick="gallery.nextLightbox()" title="Next Image">❯</button>
+
+      <div class="lightbox-img-wrapper">
+        <img id="lightboxImage" src="" alt="Divine Darshan" class="lightbox-img">
+      </div>
+      
+      <div id="lightboxCaptionText" class="lightbox-caption"></div>
+      <div id="lightboxCounterText" class="lightbox-counter"></div>
+    </div>
+  </div>
+
+  <!-- JavaScript Modules -->
+  <script src="js/sound.js"></script>
+  <script src="js/particles.js"></script>
+  <script src="js/gallery-data.js"></script>
+  <script src="js/songs.js"></script>
+  <script src="js/sadhana.js"></script>
+  <script src="js/exporter.js"></script>
+  <script src="js/messenger.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

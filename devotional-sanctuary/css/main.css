@@ -1,0 +1,366 @@
+/* ==========================================================================
+   DIVINE SANCTUARY - CORE DESIGN SYSTEM & TOKENS
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@500;700;800&family=Kalam:wght@300;400;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Rozha+One&display=swap');
+
+:root {
+  /* Sacred Color Palette */
+  --saffron-primary: #FF7722;
+  --saffron-deep: #D35400;
+  --saffron-glow: #FFA048;
+  --gold-primary: #D4AF37;
+  --gold-bright: #F5D061;
+  --gold-dark: #9A7B1C;
+  --crimson-divine: #8B1E2F;
+  --crimson-deep: #5A0E1A;
+  --peacock-blue: #0A3641;
+  --peacock-teal: #0D6979;
+  --lotus-pink: #E06377;
+  --lotus-soft: #FDE8EC;
+  --sand-ivory: #FFFBF0;
+  --cream-soft: #F9F2E2;
+  --dark-sacred: #1A120B;
+  --dark-surface: #261B14;
+  --dark-border: #423023;
+
+  /* Typography */
+  --font-royal: 'Cinzel Decorative', 'Cinzel', serif;
+  --font-serif: 'Cinzel', serif;
+  --font-hindi-style: 'Rozha One', 'Cinzel', serif;
+  --font-handwritten: 'Kalam', cursive;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* Shadows & Glows */
+  --shadow-gold-sm: 0 4px 12px rgba(212, 175, 55, 0.25);
+  --shadow-gold-lg: 0 10px 30px rgba(212, 175, 55, 0.35);
+  --shadow-crimson: 0 10px 30px rgba(139, 30, 47, 0.3);
+  --shadow-card: 0 12px 36px rgba(26, 18, 11, 0.08);
+  --shadow-modal: 0 24px 60px rgba(0, 0, 0, 0.4);
+
+  /* Borders & Radius */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --radius-full: 9999px;
+  --border-gold: 1.5px solid rgba(212, 175, 55, 0.4);
+  --border-gold-solid: 2px solid var(--gold-primary);
+}
+
+/* Reset & Base Setup */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  font-family: var(--font-sans);
+  background: var(--sand-ivory);
+  color: var(--dark-sacred);
+  background-image: 
+    radial-gradient(circle at 15% 15%, rgba(255, 119, 34, 0.04) 0%, transparent 40%),
+    radial-gradient(circle at 85% 85%, rgba(212, 175, 55, 0.06) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(224, 99, 119, 0.03) 0%, transparent 60%);
+  background-attachment: fixed;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Floating Particles Canvas */
+#particlesCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* Top Sacred Floating Bar */
+.top-sacred-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 24px;
+  background: rgba(255, 251, 240, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+}
+
+.brand-badge {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.brand-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--gold-bright), var(--saffron-primary));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-gold-sm);
+  font-size: 20px;
+  animation: pulseGlow 3s infinite ease-in-out;
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-title {
+  font-family: var(--font-royal);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--crimson-divine);
+  letter-spacing: 0.5px;
+}
+
+.brand-subtitle {
+  font-size: 0.72rem;
+  color: var(--gold-dark);
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Action Pill Buttons */
+.pill-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 600;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  border: none;
+  outline: none;
+}
+
+.pill-btn-gold {
+  background: linear-gradient(135deg, var(--gold-primary), var(--saffron-primary));
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(212, 175, 55, 0.35);
+}
+
+.pill-btn-gold:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(212, 175, 55, 0.5);
+}
+
+.pill-btn-outline {
+  background: rgba(255, 255, 255, 0.8);
+  border: 1.5px solid var(--gold-primary);
+  color: var(--crimson-divine);
+}
+
+.pill-btn-outline:hover {
+  background: var(--cream-soft);
+  transform: translateY(-2px);
+}
+
+.sound-toggle-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(212, 175, 55, 0.5);
+  background: #FFFDF7;
+  color: var(--crimson-divine);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.sound-toggle-btn:hover {
+  background: var(--gold-bright);
+  color: #fff;
+  transform: scale(1.05);
+}
+
+/* Main Container Viewport */
+.app-container {
+  padding-top: 75px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+  z-index: 20;
+}
+
+/* Sanctum Section Containers */
+.sanctum-section {
+  display: none;
+  width: 100%;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 24px 20px 80px;
+  animation: fadeInSlideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.sanctum-section.active {
+  display: block;
+}
+
+/* Section Header Motif */
+.section-header-motif {
+  text-align: center;
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.diya-badge {
+  display: inline-block;
+  font-size: 2rem;
+  margin-bottom: 6px;
+  animation: diyaFlame 2s ease-in-out infinite alternate;
+}
+
+.section-title {
+  font-family: var(--font-royal);
+  font-size: 2.2rem;
+  color: var(--crimson-divine);
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+}
+
+.section-subtitle {
+  font-family: var(--font-handwritten);
+  font-size: 1.15rem;
+  color: var(--gold-dark);
+}
+
+.ornament-line {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 12px auto 0;
+  max-width: 240px;
+}
+
+.ornament-line::before,
+.ornament-line::after {
+  content: '';
+  flex: 1;
+  height: 1.5px;
+  background: linear-gradient(90deg, transparent, var(--gold-primary), transparent);
+}
+
+.ornament-flower {
+  color: var(--gold-primary);
+  font-size: 14px;
+}
+
+/* Common Card Box */
+.divine-card {
+  background: #FFFFFF;
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  box-shadow: var(--shadow-card);
+  padding: 28px 24px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.divine-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--gold-primary), var(--saffron-primary), var(--crimson-divine));
+}
+
+/* Keyframes */
+@keyframes fadeInSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 12px rgba(255, 160, 72, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 24px rgba(255, 160, 72, 0.8), 0 0 36px rgba(212, 175, 55, 0.5);
+  }
+}
+
+@keyframes diyaFlame {
+  0% {
+    transform: scale(1) rotate(-1deg);
+    filter: drop-shadow(0 0 8px rgba(255, 170, 0, 0.6));
+  }
+  100% {
+    transform: scale(1.08) rotate(1deg);
+    filter: drop-shadow(0 0 16px rgba(255, 120, 0, 0.9));
+  }
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .top-sacred-bar {
+    padding: 10px 14px;
+  }
+  .brand-title {
+    font-size: 0.95rem;
+  }
+  .brand-subtitle {
+    font-size: 0.65rem;
+  }
+  .pill-btn span.btn-label {
+    display: none;
+  }
+  .section-title {
+    font-size: 1.65rem;
+  }
+  .section-subtitle {
+    font-size: 1rem;
+  }
+  .divine-card {
+    padding: 20px 16px;
+  }
+}

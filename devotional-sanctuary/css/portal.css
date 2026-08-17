@@ -1,0 +1,433 @@
+/* ==========================================================================
+   MANTRA ENTRANCE PORTAL & SECRET DOOR ANIMATIONS
+   ========================================================================== */
+
+.portal-wrapper {
+  min-height: calc(100vh - 100px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 680px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 20px 16px;
+  position: relative;
+}
+
+/* Devotional Greeting Banner */
+.portal-greeting {
+  margin-bottom: 24px;
+}
+
+.portal-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 18px;
+  background: rgba(255, 119, 34, 0.1);
+  border: 1px solid rgba(255, 119, 34, 0.3);
+  border-radius: var(--radius-full);
+  color: var(--saffron-deep);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  margin-bottom: 14px;
+}
+
+.portal-main-heading {
+  font-family: var(--font-royal);
+  font-size: 2.3rem;
+  color: var(--crimson-divine);
+  line-height: 1.25;
+  margin-bottom: 8px;
+  text-shadow: 0 2px 10px rgba(139, 30, 47, 0.1);
+}
+
+.portal-subtext {
+  font-family: var(--font-handwritten);
+  font-size: 1.35rem;
+  color: var(--saffron-deep);
+}
+
+/* 3D Sacred Envelope & Sanctum Vault */
+.sacred-envelope-container {
+  width: 100%;
+  max-width: 440px;
+  perspective: 1200px;
+  margin: 15px auto 25px;
+}
+
+.sacred-envelope {
+  width: 100%;
+  height: 250px;
+  background: linear-gradient(145deg, #FFF9E6, #FCE8B2);
+  border: 3px solid var(--gold-primary);
+  border-radius: 18px;
+  position: relative;
+  box-shadow: 0 16px 40px rgba(90, 40, 10, 0.18), inset 0 0 20px rgba(212, 175, 55, 0.2);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.sacred-envelope:hover {
+  transform: translateY(-4px) scale(1.01);
+}
+
+/* Envelope Flaps */
+.envelope-flap-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 0;
+  border-left: 218px solid transparent;
+  border-right: 218px solid transparent;
+  border-top: 130px solid #F5D38A;
+  transform-origin: top;
+  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 5;
+  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+}
+
+.envelope-flap-left {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-bottom: 245px solid #FCE5A4;
+  border-right: 218px solid transparent;
+  z-index: 2;
+}
+
+.envelope-flap-right {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+  border-bottom: 245px solid #FCE5A4;
+  border-left: 218px solid transparent;
+  z-index: 2;
+}
+
+.envelope-flap-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 0;
+  border-left: 218px solid transparent;
+  border-right: 218px solid transparent;
+  border-bottom: 125px solid #F6D68C;
+  z-index: 3;
+}
+
+/* Center Auspicious Wax Seal */
+.sacred-wax-seal {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #FF7722, #8B1E2F);
+  border: 3px solid var(--gold-bright);
+  box-shadow: 0 8px 25px rgba(139, 30, 47, 0.5), inset 0 2px 8px rgba(255, 255, 255, 0.4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #FFFDF0;
+  cursor: pointer;
+  z-index: 8;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  animation: sealFloat 3s ease-in-out infinite alternate;
+}
+
+.sacred-wax-seal:hover {
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: 0 12px 30px rgba(255, 119, 34, 0.7);
+}
+
+.wax-seal-icon {
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.wax-seal-text {
+  font-family: var(--font-royal);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-top: 3px;
+  color: var(--gold-bright);
+}
+
+/* Open Animation Trigger */
+.sacred-envelope.opened .envelope-flap-top {
+  transform: rotateX(180deg);
+  z-index: 1;
+}
+
+.sacred-envelope.opened .sacred-wax-seal {
+  transform: scale(0);
+  opacity: 0;
+}
+
+/* Sacred Mantra Input Console */
+.mantra-console-box {
+  width: 100%;
+  max-width: 480px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(16px);
+  padding: 24px 20px;
+  border-radius: var(--radius-lg);
+  border: 1.5px solid rgba(212, 175, 55, 0.4);
+  box-shadow: 0 10px 30px rgba(90, 40, 10, 0.08);
+}
+
+.mantra-input-label {
+  display: block;
+  font-family: var(--font-handwritten);
+  font-size: 1.25rem;
+  color: var(--saffron-deep);
+  margin-bottom: 12px;
+  font-weight: 700;
+}
+
+.input-field-group {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.mantra-input-field {
+  width: 100%;
+  padding: 14px 48px 14px 18px;
+  font-family: var(--font-sans);
+  font-size: 1.05rem;
+  font-weight: 600;
+  border: 2px solid rgba(212, 175, 55, 0.5);
+  border-radius: var(--radius-full);
+  background: #FFFDF7;
+  color: var(--crimson-divine);
+  outline: none;
+  transition: all 0.25s ease;
+  box-shadow: inset 0 2px 6px rgba(0,0,0,0.04);
+}
+
+.mantra-input-field:focus {
+  border-color: var(--saffron-primary);
+  box-shadow: 0 0 0 4px rgba(255, 119, 34, 0.15);
+  background: #FFFFFF;
+}
+
+.mantra-input-field::placeholder {
+  color: #B59B7D;
+  font-weight: 400;
+  font-size: 0.95rem;
+}
+
+.submit-mantra-btn {
+  position: absolute;
+  right: 6px;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--saffron-primary), var(--crimson-divine));
+  border: none;
+  color: #fff;
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 10px rgba(139, 30, 47, 0.3);
+}
+
+.submit-mantra-btn:hover {
+  transform: scale(1.08);
+  box-shadow: 0 6px 16px rgba(255, 119, 34, 0.5);
+}
+
+/* Quick Chant Buttons */
+.quick-chant-title {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--gold-dark);
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.quick-chant-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+
+.quick-chant-chip {
+  padding: 6px 14px;
+  background: #FFF9ED;
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  border-radius: var(--radius-full);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--crimson-divine);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.quick-chant-chip:hover {
+  background: linear-gradient(135deg, var(--gold-primary), var(--saffron-primary));
+  color: #fff;
+  border-color: transparent;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-gold-sm);
+}
+
+/* Keyword Directory Guide Modal */
+.guide-trigger {
+  margin-top: 14px;
+  font-size: 0.85rem;
+  color: var(--saffron-deep);
+  cursor: pointer;
+  text-decoration: underline;
+  display: inline-block;
+  font-weight: 600;
+}
+
+.guide-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(8px);
+  z-index: 200;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.guide-modal-overlay.active {
+  display: flex;
+}
+
+.guide-modal {
+  width: 100%;
+  max-width: 580px;
+  max-height: 88vh;
+  background: #FFFDF8;
+  border: 2px solid var(--gold-primary);
+  border-radius: var(--radius-lg);
+  padding: 28px 24px;
+  overflow-y: auto;
+  box-shadow: var(--shadow-modal);
+  position: relative;
+  animation: fadeInSlideUp 0.3s ease;
+}
+
+.guide-close-btn {
+  position: absolute;
+  top: 16px;
+  right: 18px;
+  font-size: 1.5rem;
+  color: var(--crimson-divine);
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+.guide-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 16px;
+  font-size: 0.9rem;
+}
+
+.guide-table th, .guide-table td {
+  padding: 10px 12px;
+  text-align: left;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.guide-table th {
+  background: #FFF4DC;
+  color: var(--crimson-divine);
+  font-family: var(--font-royal);
+}
+
+.guide-key-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  background: #FFF1D2;
+  border: 1px solid rgba(212, 175, 55, 0.5);
+  border-radius: var(--radius-sm);
+  font-weight: 700;
+  color: var(--crimson-divine);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.guide-key-badge:hover {
+  background: var(--gold-bright);
+  color: #fff;
+}
+
+/* Animations */
+@keyframes sealFloat {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  100% {
+    transform: translateY(-6px) rotate(3deg);
+  }
+}
+
+/* Mobile Adjustments */
+@media (max-width: 480px) {
+  .portal-main-heading {
+    font-size: 1.75rem;
+  }
+  .portal-subtext {
+    font-size: 1.15rem;
+  }
+  .sacred-envelope {
+    height: 200px;
+  }
+  .envelope-flap-top {
+    border-left-width: 170px;
+    border-right-width: 170px;
+    border-top-width: 105px;
+  }
+  .envelope-flap-left {
+    border-bottom-width: 195px;
+    border-right-width: 170px;
+  }
+  .envelope-flap-right {
+    border-bottom-width: 195px;
+    border-left-width: 170px;
+  }
+  .envelope-flap-bottom {
+    border-left-width: 170px;
+    border-right-width: 170px;
+    border-bottom-width: 100px;
+  }
+  .sacred-wax-seal {
+    width: 80px;
+    height: 80px;
+  }
+  .wax-seal-icon {
+    font-size: 1.5rem;
+  }
+}
